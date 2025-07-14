@@ -1,12 +1,13 @@
 import { PiLinkBold } from 'react-icons/pi'
 import { FaGithub } from 'react-icons/fa'
 import type { ReactNode } from 'react'
+import NextLink from 'next/link'
 
-const newUrl = '' // TODO: add new url from bento.me -> https://github.com/mrLuisFer/me-bento
-const repositoryUrl = 'https://github.com/mrLuisFer/me-bento'
+const newUrl = 'https://bento.me/mrluisfer'
+const repositoryUrl = 'https://github.com/mrLuisFer/linktry'
 export default function DeprecatedHeader() {
   return (
-    <header className='flex flex-col items-center justify-center py-4 bg-orange-50 gap-2'>
+    <header className='flex flex-col items-center justify-center py-4 bg-slate-50 gap-2'>
       <h1>
         This site has been deprecated, I recommend you to visit the following
         link to have a more modern and updated version
@@ -27,11 +28,14 @@ export default function DeprecatedHeader() {
 
 function Link({ url, children }: { url: string; children: ReactNode }) {
   return (
-    <a
-      href={url}
-      className='flex items-center gap-1 font-semibold text-sm bg-neutral-100 p-2 rounded-lg hover:bg-neutral-200 transition shadow hover:shadow-md'
-    >
-      {children}
-    </a>
+    <NextLink href={url} target='_blank' rel='noopener noreferrer'>
+      <a
+        target='_blank'
+        rel='noopener noreferrer'
+        className='flex items-center gap-1 font-semibold text-sm bg-neutral-100 p-2 rounded-lg hover:bg-neutral-200 transition shadow hover:shadow-md'
+      >
+        {children}
+      </a>
+    </NextLink>
   )
 }

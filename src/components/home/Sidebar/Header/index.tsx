@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { IoMoon } from 'react-icons/io5'
 import { AiOutlinePaperClip } from 'react-icons/ai'
@@ -31,9 +33,7 @@ export default function Header(): JSX.Element {
         <HeaderBtn
           title={isCopiedLink ? 'Link copied!' : 'Copy link'}
           Icon={<AiOutlinePaperClip />}
-          onClick={() => {
-            void handleCopyLink()
-          }}
+          onClick={handleCopyLink}
           className={
             isCopiedLink
               ? 'bg-green-200 dark:bg-green-300 dark:text-gray-900 hover:dark:bg-green-200 hover:bg-green-200 hover:brightness-105'

@@ -1,13 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { HiOutlineMail } from 'react-icons/hi'
 import { TbBrandGithub } from 'react-icons/tb'
-import {
-  Heading,
-  Text,
-  Link as RadixLink,
-  Avatar as RadixAvatar
-} from '@radix-ui/themes'
+import Image from 'next/image'
 
 export interface IQuickContactItem {
   icon: any
@@ -41,13 +38,12 @@ export default function Avatar(): JSX.Element {
         }}
         className='relative'
       >
-        <RadixAvatar
-          fallback='mrLuisFer'
+        <Image
           src='/avatar.png'
-          key='mrluisfer'
           alt='mrLuisFer GitHub Profile'
+          width={200}
+          height={200}
           className='rounded-full w-fit h-fit'
-          size='9'
           draggable={false}
         />
       </motion.div>
@@ -60,18 +56,15 @@ export default function Avatar(): JSX.Element {
         }}
         className='flex flex-col justify-start gap-4'
       >
-        <Heading
-          as='h1'
-          className='font-bold text-4xl border-b-2 border-transparent hover:border-gray-800 dark:hover:border-gray-300 transition w-fit'
-        >
+        <h1 className='font-bold text-4xl border-b-2 border-transparent hover:border-gray-800 dark:hover:border-gray-300 transition w-fit'>
           mrLuisFer
-        </Heading>
-        <Text className='font-normal opacity-80 hover:opacity-100 transition w-[350px]'>
+        </h1>
+        <p className='font-normal opacity-80 hover:opacity-100 transition w-[350px]'>
           {"I'm"} a <b>Frontend Developer</b> specialized in <b>JavaScript</b>{' '}
           and <b>TypeScript</b> environment using <b>React.js</b> and tools for
           Web development. I also like Backend development using <b>Node.js</b>{' '}
           to create Fullstack applications.
-        </Text>
+        </p>
         <div className='flex flex-col gap-4'>
           {quickContactItems.map((item) => (
             <motion.span
@@ -84,14 +77,11 @@ export default function Avatar(): JSX.Element {
                 ease: 'linear'
               }}
             >
-              <Link href={item.link}>
-                <RadixLink
-                  className='flex items-center gap-2 font-semibold select-none'
-                  draggable={false}
-                >
+              <Link href={item.link} draggable={false}>
+                <a className='flex items-center gap-2 font-semibold select-none'>
                   {item.icon}
                   {item.label}
-                </RadixLink>
+                </a>
               </Link>
             </motion.span>
           ))}
