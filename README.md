@@ -15,7 +15,7 @@ A personal landing page to showcase all your social links, embedded content, and
 
 ---
 
-<div align="center">
+<div align="center" style="font-weight: bold;">
 🥈 Second-place winner on the EDTeam platform, which featured more than 50 developers from the LATAM community in a contest to build the best Linktree clone using React. Check out the original challenge and my submission here:
 <a href="https://ed.team/comunidad/crea-una-app-en-react-y-gana-un-mes-premium-en-edteam" target="_blank" rel="noopener noreferrer">
 Build an app with React and win a month of EDteam Premium
