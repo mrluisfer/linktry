@@ -1,49 +1,161 @@
-# 🌿 Linktree - made with React
+<div align="center">
 
-## ⚡ About
+# Linktry
 
-To use or deploy it you only need to modify the two files inside
-`/src/api`
+A customizable Linktree clone built with Next.js, TypeScript & Tailwind CSS
 
-And add the information you want, the settings and use of this information is already programmed to appear on the page
+[![Next.js](https://img.shields.io/badge/Next.js-12-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-### ⭐ Advanced
+A personal landing page to showcase all your social links, embedded content, and online presence in one place — with support for Twitter embeds, Instagram posts, YouTube videos, and more.
 
-If you want cards or a more customized use you can modify the source code by making a fork of the repository and modify it to taste or needs
+</div>
 
-You can even do a pull request if you improve code or page performance
+---
 
-You can find more info of how to contribute:
-[here](https://gist.github.com/MarcDiethelm/7303312)
+<div align="center">
+🥈 Second-place winner on the EDTeam platform, which featured more than 50 developers from the LATAM community in a contest to build the best Linktree clone using React. Check out the original challenge and my submission here:
+<a href="https://ed.team/comunidad/crea-una-app-en-react-y-gana-un-mes-premium-en-edteam" target="_blank" rel="noopener noreferrer">
+Build an app with React and win a month of EDteam Premium
+</a>
+</div>
 
-## 📜 Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Data-driven cards** — add links by editing a single file (`src/data.ts`), no component changes needed
+- **Social media embeds** — native embeds for Twitter/X posts, Instagram cards, and YouTube videos
+- **Responsive layout** — sidebar + masonry card grid that adapts from mobile to desktop
+- **Dark mode** — built-in dark mode support via Tailwind CSS
+- **Animated transitions** — smooth card animations powered by Framer Motion
+- **Customizable profile** — avatar, bio, social links, all configurable from constants files
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
+| Layer      | Technology                                                                                                                                                          |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework  | [Next.js 12](https://nextjs.org/) (Pages Router)                                                                                                                    |
+| Language   | [TypeScript](https://www.typescriptlang.org/)                                                                                                                       |
+| Styling    | [Tailwind CSS](https://tailwindcss.com/) + [Radix UI Themes](https://www.radix-ui.com/)                                                                             |
+| State      | [Zustand](https://zustand-demo.pmnd.rs/)                                                                                                                            |
+| Animations | [Framer Motion](https://www.framer.com/motion/)                                                                                                                     |
+| Embeds     | [react-social-media-embed](https://github.com/nicholasareed/react-social-media-embed) / [react-twitter-embed](https://github.com/saurabhnemade/react-twitter-embed) |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 16
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/mrLuisFer/linktry.git
+cd linktry
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm run format`
+### Production Build
 
-Run the script to format the code using Prettier
+```bash
+npm run build
+npm start
+```
 
-### `npm run build`
+## Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── pages/             # Next.js pages (single route: index)
+├── components/
+│   ├── core/
+│   │   ├── Cards/     # Base card components and skeleton loaders
+│   │   └── Embeds/    # Twitter, Instagram, YouTube embed components
+│   └── home/
+│       ├── CardsLayout/  # Masonry grid + card type selector
+│       └── Sidebar/      # Profile sidebar (header, avatar, footer)
+├── constants/
+│   ├── userConfig.ts  # Personal info (name, avatar, bio)
+│   └── socialLinks.ts # Social platform links for sidebar
+├── data.ts            # Card data array — main content source
+├── store/             # Zustand stores
+├── hooks/             # Custom React hooks
+└── types/             # TypeScript type definitions
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Customization
 
-## ❄ Commits "Rules"
+### 1. Update your profile
 
-I want to do something an experimental
+Edit `src/constants/userConfig.ts` with your personal information:
 
-When committing to a branch, Emojis will be used representing a new feature, bug or something related to the core project
+```ts
+export const userConfig = {
+  avatar: '/assets/avatar.jpg',
+  firstName: 'Your Name',
+  username: 'yourUsername'
+  // ...
+}
+```
 
-### 📑 To contribute
-When you want to contribute, you just need to clone the repository or fork the repository
+### 2. Update sidebar social links
 
-Create a new branch with a descriptive but short title, add your commits and submit your pull request
+Edit `src/constants/socialLinks.ts` to add or modify sidebar links.
+
+### 3. Add link cards
+
+Add entries to `src/data.ts`. Each card needs at minimum:
+
+```ts
+{
+  id: generateId(),
+  type: 'github',       // card type
+  url: 'https://...',   // destination URL
+  title: 'My GitHub',   // card title
+}
+```
+
+**Available card types:** any string for base cards (rendered with `BaseCardWithProps`), or use `tweet`, `instagramCard`, `youtube` for embedded content.
+
+### 4. Add a new card type
+
+1. Create a component in `src/components/core/Embeds/`
+2. Add a case in `src/components/home/CardsLayout/CardsSelect.tsx`
+
+## Available Scripts
+
+| Command          | Description               |
+| ---------------- | ------------------------- |
+| `npm run dev`    | Start development server  |
+| `npm run build`  | Create production build   |
+| `npm start`      | Start production server   |
+| `npm run lint`   | Run ESLint                |
+| `npm run format` | Format code with Prettier |
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/my-feature`)
+3. Commit your changes with a descriptive message
+4. Push to your branch (`git push origin feature/my-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+
+---
+
+<div align="center">
+  Made by <a href="https://github.com/mrLuisFer">Luis Alvarez</a>
+</div>
