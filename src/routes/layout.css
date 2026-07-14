@@ -1,0 +1,229 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* ============================================================
+   Design tokens — single source of truth for color, driven by
+   the [data-theme] attribute set in app.html + theme.svelte.ts.
+   ============================================================ */
+:root,
+:root[data-theme='light'] {
+	--page-bg: #fafafa;
+	--surface: #ffffff;
+	--surface-2: #f4f4f5;
+	--text: #18181b;
+	--text-2: #52525b;
+	--text-3: #a1a1aa;
+	--border: #e7e7ea;
+	--accent-brand: #6366f1;
+
+	--gh-0: #ebedf0;
+	--gh-1: #9be9a8;
+	--gh-2: #40c463;
+	--gh-3: #30a14e;
+	--gh-4: #216e39;
+
+	color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+	--page-bg: #09090b;
+	--surface: #18181b;
+	--surface-2: #27272a;
+	--text: #fafafa;
+	--text-2: #a1a1aa;
+	--text-3: #71717a;
+	--border: #262629;
+	--accent-brand: #818cf8;
+
+	--gh-0: #161b22;
+	--gh-1: #0e4429;
+	--gh-2: #006d32;
+	--gh-3: #26a641;
+	--gh-4: #39d353;
+
+	color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--page-bg: #09090b;
+		--surface: #18181b;
+		--surface-2: #27272a;
+		--text: #fafafa;
+		--text-2: #a1a1aa;
+		--text-3: #71717a;
+		--border: #262629;
+		--accent-brand: #818cf8;
+		--gh-0: #161b22;
+		--gh-1: #0e4429;
+		--gh-2: #006d32;
+		--gh-3: #26a641;
+		--gh-4: #39d353;
+		color-scheme: dark;
+	}
+}
+
+html {
+	background: var(--page-bg);
+}
+
+body {
+	min-height: 100dvh;
+	color: var(--text);
+	background:
+		radial-gradient(
+			60rem 40rem at 100% -10%,
+			color-mix(in srgb, var(--accent-brand) 10%, transparent),
+			transparent 60%
+		),
+		radial-gradient(
+			50rem 40rem at -10% 10%,
+			color-mix(in srgb, var(--accent-brand) 7%, transparent),
+			transparent 55%
+		),
+		var(--page-bg);
+	font-family:
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   Card primitives — shared visual language for every card. The
+   accent is injected per-card via the `--card-accent` variable.
+   ============================================================ */
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.875rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	text-decoration: none;
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease,
+		border-color 0.25s ease;
+}
+
+.card:hover {
+	transform: translateY(-3px);
+	border-color: color-mix(in srgb, var(--card-accent) 40%, var(--border));
+	box-shadow: 0 14px 34px -18px color-mix(in srgb, var(--card-accent) 55%, transparent);
+}
+
+.card:focus-visible {
+	outline: 2px solid var(--card-accent);
+	outline-offset: 2px;
+}
+
+.card--flush {
+	padding: 0;
+	border: none;
+	background: transparent;
+}
+
+.card--flush:hover {
+	box-shadow: none;
+}
+
+.badge {
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 0.75rem;
+	color: var(--card-fg, #fff);
+	flex-shrink: 0;
+}
+
+.cta {
+	display: inline-flex;
+	align-self: flex-start;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.5rem 1rem;
+	border-radius: 9999px;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	color: var(--card-fg, #fff);
+	background: var(--card-accent);
+	transition: filter 0.2s ease;
+}
+
+.card:hover .cta {
+	filter: brightness(1.08);
+}
+
+.action-mini {
+	display: grid;
+	place-items: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 9999px;
+	background: var(--surface-2);
+	color: var(--text-2);
+	transition:
+		background 0.2s ease,
+		color 0.2s ease;
+}
+
+.card:hover .action-mini {
+	background: var(--card-accent);
+	color: var(--card-fg, #fff);
+}
+
+/* ============================================================
+   Reveal-on-scroll — GPU-only (opacity/transform), driven by the
+   `reveal` action. Falls back to fully visible without motion.
+   ============================================================ */
+[data-reveal] {
+	opacity: 0;
+	transition:
+		opacity 0.55s ease,
+		transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+		filter 0.55s ease;
+	transition-delay: var(--reveal-delay, 0s);
+	will-change: opacity, transform;
+}
+
+[data-reveal='fadeUp'] {
+	transform: translateY(16px);
+}
+[data-reveal='slideLeft'] {
+	transform: translateX(-16px);
+}
+[data-reveal='slideRight'] {
+	transform: translateX(16px);
+}
+[data-reveal='blurIn'] {
+	filter: blur(6px);
+}
+
+[data-revealed='true'] {
+	opacity: 1;
+	transform: none;
+	filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-reveal] {
+		opacity: 1 !important;
+		transform: none !important;
+		filter: none !important;
+		transition: none;
+	}
+	.card,
+	.cta,
+	.action-mini {
+		transition: none;
+	}
+}

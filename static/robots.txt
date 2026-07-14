@@ -1,0 +1,5 @@
+# Allow crawling everything by default
+User-agent: *
+Allow: /
+
+Sitemap: https://bento-mrluisfer.vercel.app/sitemap.xml
