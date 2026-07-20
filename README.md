@@ -1,3 +1,5 @@
+<div align="center">
+
 # Linktry — Bento profile
 
 A modular, high-performance **Bento-style link-in-bio**, built with **SvelteKit + Svelte 5 + Tailwind CSS 4**.
@@ -7,6 +9,16 @@ Profile on the left, an advanced **masonry** board of cards on the right — ins
 ![Svelte 5](https://img.shields.io/badge/Svelte-5%20runes-ff3e00?logo=svelte&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
+</div>
+
+---
+
+> 🥈 **Second-place winner** on the EDTeam platform — a contest featuring 50+ developers
+> from the LATAM community to build the best Linktree clone in React. This SvelteKit
+> version is the evolution of that award-winning project.
+> [See the original challenge →](https://ed.team/comunidad/crea-una-app-en-react-y-gana-un-mes-premium-en-edteam)
 
 ---
 
@@ -55,7 +67,7 @@ npm run preview
 
 ## 📁 Project structure
 
-```
+```bash
 src/
 ├─ lib/
 │  ├─ types.ts                # Domain contract (data ≠ rendering)
@@ -86,7 +98,7 @@ src/
 
 Everything renders from one typed object, so **data and presentation stay fully decoupled**:
 
-```
+```bash
 content (AppContent)
 ├─ profile   → ProfilePanel        (left, sticky on desktop)
 └─ sections  → BentoBoard
@@ -154,8 +166,34 @@ The project uses `@sveltejs/adapter-auto`, which detects Vercel, Netlify, Cloudf
 and others automatically. For a specific target, swap in the matching
 [adapter](https://svelte.dev/docs/kit/adapters).
 
+## 📜 Scripts
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Vite dev server            |
+| `npm run build`   | Create a production build            |
+| `npm run preview` | Preview the production build locally |
+| `npm run check`   | Type-check with `svelte-check`       |
+| `npm run lint`    | Run Prettier (check) + ESLint        |
+| `npm run format`  | Format the codebase with Prettier    |
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/my-feature`)
+3. Commit your changes with a descriptive message
+4. Run `npm run check`, `npm run lint` and `npm run build` before pushing
+5. Push to your branch (`git push origin feature/my-feature`) and open a Pull Request
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
 ## 🙌 Credits
 
 Inspired by [Bento.me](https://bento.me) (acquired by Linktry) and ported from my React
 implementation, [`bento-me`](https://github.com/mrluisfer/bento-me).
-Built by [Luis Alvarez](https://mrluisfer.vercel.app/).
+
+<div align="center">
+  Made by <a href="https://github.com/mrLuisFer">Luis Alvarez</a>
+</div>
