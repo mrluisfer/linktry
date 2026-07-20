@@ -16,7 +16,8 @@ export const profile: ProfileContent = {
 			text: 'Based in Mexico.',
 			icon: 'map',
 			animation: 'slideLeft',
-			delay: 0.15
+			delay: 0.15,
+			href: 'https://es.wikipedia.org/wiki/M%C3%A9xico'
 		},
 		{
 			id: 'quote',
